@@ -1,4 +1,4 @@
-package com.rajanayak.pkms.Controller;
+package com.rajanayak.pkms.controller;
 
 import com.rajanayak.pkms.entity.User;
 import com.rajanayak.pkms.service.UserService;
@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/users")

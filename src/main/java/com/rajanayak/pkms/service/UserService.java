@@ -2,8 +2,11 @@ package com.rajanayak.pkms.service;
 
 import com.rajanayak.pkms.entity.User;
 import com.rajanayak.pkms.repository.IUserRepository;
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -18,5 +21,10 @@ public class UserService {
     //This method save one User to the users collection
     public void saveOneUser(User newUser){
         userRepo.save(newUser);
+    }
+
+    //This method is used to find a user from the collection based on the id
+    public Optional<User> getUserById(ObjectId id){
+        return userRepo.findById(id);
     }
 }

@@ -2,10 +2,12 @@ package com.rajanayak.pkms.Controller;
 
 import com.rajanayak.pkms.entity.User;
 import com.rajanayak.pkms.service.UserService;
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/users")
@@ -21,5 +23,10 @@ public class UserController {
     @PostMapping
     public void saveOneUser(@RequestBody User newUser){
         userService.saveOneUser(newUser);
+    }
+
+    @GetMapping("{id}")
+    public User gettingUserById(@PathVariable ObjectId id){
+        return userService.getUserById(id).orElseThrow(() -> new IllegalArgumentException("User is not found : "+id));
     }
 }

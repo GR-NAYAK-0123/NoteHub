@@ -27,4 +27,9 @@ public class UserService {
     public Optional<User> getUserById(ObjectId id){
         return userRepo.findById(id);
     }
+
+    //This method is used to find the User based on his Name
+    public Optional<User> getUserByName(String userName){
+        return userRepo.findUserByUsername(userName);
+    }
 }

@@ -24,8 +24,15 @@ public class UserController {
         userService.saveOneUser(newUser);
     }
 
-    @GetMapping("{id}")
-    public User gettingUserById(@PathVariable ObjectId id){
-        return userService.getUserById(id).orElseThrow(() -> new IllegalArgumentException("User is not found : "+id));
+    @GetMapping("/{myId}")
+    public User gettingUserById(@PathVariable ObjectId myId){
+        return userService.getUserById(myId).
+                orElseThrow(() -> new IllegalArgumentException("User is not found : "+myId));
+    }
+
+    @GetMapping("/username/{userName}")
+    public User gettingUserByName(@PathVariable String userName){
+        return userService.getUserByName(userName)
+                .orElseThrow(() -> new IllegalArgumentException("User not found with UserName : "+userName));
     }
 }

@@ -25,7 +25,7 @@ public class UserController {
     }
 
     @GetMapping("/{myId}")
-    public User gettingUserById(@PathVariable ObjectId myId){
+    public User gettingUserById(@PathVariable String myId){
         return userService.getUserById(myId).
                 orElseThrow(() -> new IllegalArgumentException("User is not found : "+myId));
     }

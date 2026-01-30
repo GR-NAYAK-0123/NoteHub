@@ -24,8 +24,11 @@ public class UserService {
     }
 
     //This method is used to find a user from the collection based on the id
-    public Optional<User> getUserById(ObjectId id){
-        return userRepo.findById(id);
+    public Optional<User> getUserById(String id){
+        if (!ObjectId.isValid(id)) {
+            throw new IllegalArgumentException("Invalid MongoDB ObjectId: " + id);
+        }
+        return userRepo.findById(new ObjectId(id));
     }
 
     //This method is used to find the User based on his Name

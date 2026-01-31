@@ -35,4 +35,9 @@ public class UserService {
     public Optional<User> getUserByName(String userName){
         return userRepo.findUserByUsername(userName);
     }
+
+    //This method gives the specific user details based on his Email
+    public Optional<User> getUserByEmail(String email){
+        return userRepo.findByEmail(email);
+    }
 }

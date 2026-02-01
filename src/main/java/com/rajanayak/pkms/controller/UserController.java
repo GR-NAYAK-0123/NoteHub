@@ -1,5 +1,6 @@
 package com.rajanayak.pkms.controller;
 
+import com.rajanayak.pkms.dto.user.UpdateUser;
 import com.rajanayak.pkms.entity.User;
 import com.rajanayak.pkms.service.UserService;
 import org.bson.types.ObjectId;
@@ -46,5 +47,10 @@ public class UserController {
     public User GettingUserByNameAndEmail(@PathVariable String name, @PathVariable String email){
         return userService.getByNameAndEmail(name, email)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid Details : "));
+    }
+
+    @PutMapping("/{id}")
+    public User updateUserData(@PathVariable String id, @RequestBody UpdateUser user){
+        return userService.modifyUserData(id, user);
     }
 }

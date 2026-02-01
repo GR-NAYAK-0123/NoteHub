@@ -1,5 +1,6 @@
 package com.rajanayak.pkms.service;
 
+import com.rajanayak.pkms.dto.user.UpdateUser;
 import com.rajanayak.pkms.entity.User;
 import com.rajanayak.pkms.repository.IUserRepository;
 import org.bson.types.ObjectId;
@@ -44,5 +45,21 @@ public class UserService {
     //This methods will find the User Based on Both name and email
     public Optional<User> getByNameAndEmail(String name, String mail){
         return userRepo.findByUserNameAndEmail(name, mail);
+    }
+
+    //This method is update the username or user email
+    public User modifyUserData(String id, UpdateUser user){
+        if(!ObjectId.isValid(id)){
+            throw new IllegalArgumentException("Invalid MongoDB ObjectId: " + id);
+        }
+        User existingUser = userRepo.findById(new ObjectId(id))
+                .orElseThrow(() -> new RuntimeException("User not found with id: " + id));
+        if(user.getName() != null && !user.getName().isBlank()){
+            existingUser.setUsername(user.getName());
+        }
+        if(user.getEmail() != null && !user.getEmail().isBlank()){
+            existingUser.setEmail(user.getEmail());
+        }
+        return userRepo.save(existingUser);
     }
 }

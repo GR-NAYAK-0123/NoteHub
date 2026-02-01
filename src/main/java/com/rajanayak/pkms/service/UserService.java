@@ -40,4 +40,9 @@ public class UserService {
     public Optional<User> getUserByEmail(String email){
         return userRepo.findByEmail(email);
     }
+
+    //This methods will find the User Based on Both name and email
+    public Optional<User> getByNameAndEmail(String name, String mail){
+        return userRepo.findByUserNameAndEmail(name, mail);
+    }
 }

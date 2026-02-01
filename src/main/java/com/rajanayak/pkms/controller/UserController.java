@@ -41,4 +41,10 @@ public class UserController {
         return userService.getUserByEmail(email)
                 .orElseThrow(() -> new IllegalArgumentException("User not found with email : "+email));
     }
+
+    @GetMapping("/Name/Email/{name}/{email}")
+    public User GettingUserByNameAndEmail(@PathVariable String name, @PathVariable String email){
+        return userService.getByNameAndEmail(name, email)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid Details : "));
+    }
 }
